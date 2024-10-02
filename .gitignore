@@ -1,0 +1,80 @@
+# Ignore build output directories
+bin/
+obj/
+
+# Ignore user-specific files
+.vscode/
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Ignore Visual Studio Code settings
+.vscode/
+
+# Ignore packages folder (can be restored with NuGet)
+packages/
+*.nupkg
+*.snupkg
+
+# Ignore compiled DLLs and EXEs
+*.dll
+*.exe
+*.log
+
+# Ignore debug/release build outputs
+*.pdb
+*.cache
+*.ilk
+*.ipch
+*.aps
+*.pch
+*.obj
+*.iobj
+*.ipdb
+*.idb
+*.tlog
+*.lastbuildstate
+*.sbr
+
+# Ignore publish output
+publish/
+wwwroot/
+
+# Ignore Rider & JetBrains IDEs
+.idea/
+*.sln.iml
+*.DotSettings.user
+
+# Ignore auto-generated files (by Visual Studio)
+*.dbmdl
+*.mdf
+*.ldf
+
+# Ignore NCrunch
+_NCrunch_*
+.ncrunchproject
+
+# Ignore Azure Web App publish settings
+PublishProfiles/
+
+# Ignore NuGet packages
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Ignore JetBrains Rider temp files
+.idea/
+
+# Ignore Resharper files
+_ReSharper*/
+*.DotSettings.user
+
+# Ignore other logs, temporary files, and system files
+*.log
+*.tlog
+*.tmp
+*.temp
+*.DS_Store
+Thumbs.db

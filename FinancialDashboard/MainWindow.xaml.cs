@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FinancialDashboard.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,11 @@ namespace FinancialDashboard
     /// </summary>
     public partial class MainWindow : Window
     {
+        private QueryService _queryService;
         public MainWindow()
         {
             InitializeComponent();
+            _queryService = new QueryService();
         }
 
         private void SubmitQuery(object sender, RoutedEventArgs e)
@@ -31,7 +34,7 @@ namespace FinancialDashboard
             string sqlQuery = QueryInput.Text;
 
             // execute the query and return the result
-            string result = ExecuteQuery(sqlQuery);
+            string result = _queryService.ExecuteSql(sqlQuery);
 
             // display the calculated result
             ResultOutput.Text = result;
