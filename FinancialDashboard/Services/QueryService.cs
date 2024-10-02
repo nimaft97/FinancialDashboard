@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FinancialDashboard.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,9 @@ namespace FinancialDashboard.Services
 {
     public class QueryService
     {
-        public string ExecuteSql(string sql)
+        public string ExecuteSql(string sql, Category category)
         {
-            return $"Executing: {sql}";
+            return $"Executing: {sql} with category: {category}";
         }
     }
 }

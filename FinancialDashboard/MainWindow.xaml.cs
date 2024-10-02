@@ -1,4 +1,5 @@
-﻿using FinancialDashboard.Services;
+﻿using FinancialDashboard.Models;
+using FinancialDashboard.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,15 +27,19 @@ namespace FinancialDashboard
         {
             InitializeComponent();
             _queryService = new QueryService();
+
+            // bind values of Category to the WPF dropddown menu
+            CategoryDropdown.ItemsSource = Enum.GetValues(typeof(Category));
         }
 
         private void SubmitQuery(object sender, RoutedEventArgs e)
         {
             // get the query from text box
             string sqlQuery = QueryInput.Text;
+            Category selectedCategory = (Category)CategoryDropdown.SelectedItem;
 
             // execute the query and return the result
-            string result = _queryService.ExecuteSql(sqlQuery);
+            string result = _queryService.ExecuteSql(sqlQuery, selectedCategory);
 
             // display the calculated result
             ResultOutput.Text = result;
