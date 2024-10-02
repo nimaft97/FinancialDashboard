@@ -1,12 +1,15 @@
 ﻿<Window x:Class="FinancialDashboard.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FinancialDashboard"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Financial Dashboard" Height="350" Width="525">
     <Grid>
+        <!-- TextBox for SQL Input -->
+        <TextBox x:Name="QueryInput" Width="400" Height="30" VerticalAlignment="Top" Margin="10"/>
 
+        <!-- Submit Button -->
+        <Button Content="Submit" Width="100" Height="30" VerticalAlignment="Top" Margin="10,40,0,0" Click="SubmitQuery"/>
+
+        <!-- TextBlock for displaying results -->
+        <TextBlock x:Name="ResultOutput" Width="400" Height="200" VerticalAlignment="Top" Margin="10,100,0,0" TextWrapping="Wrap"/>
     </Grid>
 </Window>

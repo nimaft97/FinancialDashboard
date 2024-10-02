@@ -24,5 +24,22 @@ namespace FinancialDashboard
         {
             InitializeComponent();
         }
+
+        private void SubmitQuery(object sender, RoutedEventArgs e)
+        {
+            // get the query from text box
+            string sqlQuery = QueryInput.Text;
+
+            // execute the query and return the result
+            string result = ExecuteQuery(sqlQuery);
+
+            // display the calculated result
+            ResultOutput.Text = result;
+        }
+
+        private string ExecuteQuery(string sqlQuery)
+        {
+            return $"You submitted: {sqlQuery}";
+        }
     }
 }
