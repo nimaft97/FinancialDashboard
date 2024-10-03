@@ -9,9 +9,14 @@ namespace FinancialDashboard.Services
 {
     public class QueryService
     {
-        public string ExecuteSql(string sql, Category category)
+        public string ExecuteSql(string sql)
         {
-            return $"Executing: {sql} with category: {category}";
+            return $"Executing: {sql}";
+        }
+
+        public string AddRecord(float value, string description, Category category, DateTime date)
+        {
+            return $"Record added with Value: {value}, Description: '{description}', Category: {category}, Date: {date.ToShortDateString()}";
         }
     }
 }

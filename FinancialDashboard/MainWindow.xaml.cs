@@ -32,22 +32,31 @@ namespace FinancialDashboard
             CategoryDropdown.ItemsSource = Enum.GetValues(typeof(Category));
         }
 
-        private void SubmitQuery(object sender, RoutedEventArgs e)
+        private void AddRecord(object sender, RoutedEventArgs e)
         {
-            // get the query from text box
-            string sqlQuery = QueryInput.Text;
+            // retrieve inputs from UI
+            float value;
+            if (!float.TryParse(ValueInput.Text, out value))
+            {
+                ResultOutput.Text = "Invalid value. Please enter a valid number";
+                return;
+            }
+
+            string description = DescriptionInput.Text;
             Category selectedCategory = (Category)CategoryDropdown.SelectedItem;
+            DateTime date = DateInput.SelectedDate ?? DateTime.Now;
 
-            // execute the query and return the result
-            string result = _queryService.ExecuteSql(sqlQuery, selectedCategory);
+            string result = _queryService.AddRecord(value, description, selectedCategory, date);
 
-            // display the calculated result
             ResultOutput.Text = result;
         }
 
-        private string ExecuteQuery(string sqlQuery)
+        private void ExecuteQuery(object sender, RoutedEventArgs e)
         {
-            return $"You submitted: {sqlQuery}";
+            string sqlQuery = QueryInput.Text;
+            string result = _queryService.ExecuteSql(sqlQuery);
+
+            ResultOutput.Text = result;
         }
     }
 }
