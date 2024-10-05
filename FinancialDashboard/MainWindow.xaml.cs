@@ -35,8 +35,8 @@ namespace FinancialDashboard
         private void AddRecord(object sender, RoutedEventArgs e)
         {
             // retrieve inputs from UI
-            float value;
-            if (!float.TryParse(ValueInput.Text, out value))
+            decimal value;
+            if (!decimal.TryParse(ValueInput.Text, out value))
             {
                 ResultOutput.Text = "Invalid value. Please enter a valid number";
                 return;
