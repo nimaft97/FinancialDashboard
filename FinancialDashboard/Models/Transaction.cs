@@ -8,7 +8,8 @@ namespace FinancialDashboard.Models
 {
     public enum Category
     {
-        Food = 0,
+        Restaurant = 0,
+        Grocery,
         Accommodation,
         Entertainment,
         Transportation,
