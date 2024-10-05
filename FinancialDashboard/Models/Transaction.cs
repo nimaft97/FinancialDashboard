@@ -19,7 +19,7 @@ namespace FinancialDashboard.Models
     public class Transaction
     {
         public int TransactionID { get; set; }
-        public decimal Amout { get; set; }
+        public decimal Value { get; set; }
         public Category Category { get; set; }
         public string Description { get; set; }
         public DateTime Date { get; set; }
