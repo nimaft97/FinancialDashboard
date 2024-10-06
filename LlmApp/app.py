@@ -1,4 +1,4 @@
-from transformers import TFT5ForConditionalGeneration, T5Tokenizer
+from transformers import T5ForConditionalGeneration, T5Tokenizer
 from flask import Flask, request, jsonify
 
 MODEL_NAME = "t5-small"
@@ -8,7 +8,7 @@ MODEL_NAME = "t5-small"
 # a light-weight LLM, suitable for converting natural language to structured output
 model_name = MODEL_NAME
 tokenizer = T5Tokenizer.from_pretrained(model_name)
-model = TFT5ForConditionalGeneration.from_pretrained(model_name)
+model = T5ForConditionalGeneration.from_pretrained(model_name)
 
 # initialize the Flast application
 app = Flask(__name__)
@@ -28,8 +28,4 @@ def generate_sql():
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
-
-
-
-
 
