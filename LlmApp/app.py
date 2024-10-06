@@ -1,7 +1,7 @@
 from transformers import T5ForConditionalGeneration, T5Tokenizer
 from flask import Flask, request, jsonify
 
-MODEL_NAME = "t5-small"
+MODEL_NAME = "mrm8488/t5-base-finetuned-wikiSQL" # "t5-small"
 
 
 # initialize the model and the tokentizer using "t5-small" which is 
@@ -18,12 +18,15 @@ app = Flask(__name__)
 def generate_sql():
     data = request.json
     user_input = data['text']  # User input from C#
+    print(f"user input is: {user_input}")
 
     # Prepare the input for the model
     input_ids = tokenizer.encode(user_input, return_tensors='pt')
     outputs = model.generate(input_ids, max_length=512)
     sql_query = tokenizer.decode(outputs[0], skip_special_tokens=True)
     
+    print(f"model output is: {sql_query}")
+
     return jsonify({'sql_query': sql_query})
 
 if __name__ == "__main__":
