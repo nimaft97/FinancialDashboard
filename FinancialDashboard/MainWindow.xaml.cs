@@ -23,10 +23,12 @@ namespace FinancialDashboard
     public partial class MainWindow : Window
     {
         private QueryService _queryService;
+        private ExportService _exportService;
         public MainWindow()
         {
             InitializeComponent();
             _queryService = new QueryService();
+            _exportService = new ExportService(_queryService);
 
             // bind values of Category to the WPF dropddown menu
             CategoryDropdown.ItemsSource = Enum.GetValues(typeof(Category));
@@ -57,6 +59,23 @@ namespace FinancialDashboard
             string result = _queryService.ExecuteSql(sqlQuery);
 
             ResultOutput.Text = result;
+        }
+
+        private async void ExportToCsv_Click(object sender, RoutedEventArgs e)
+        {
+            // Specify the file path for the CSV
+            var saveFileDialog = new Microsoft.Win32.SaveFileDialog
+            {
+                Filter = "CSV file (*.csv)|*.csv",
+                FileName = "transactions.csv"
+            };
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                string filePath = saveFileDialog.FileName;
+                await _exportService.ExportTransactionsToCsv(filePath);
+                MessageBox.Show("Data exported successfully!");
+            }
         }
     }
 }
