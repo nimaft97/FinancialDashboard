@@ -20,11 +20,17 @@ def generate_sql():
     user_input = data['text']  # User input from C#
     print(f"user input is: {user_input}")
 
-    # Prepare the input for the model
-    input_ids = tokenizer.encode(user_input, return_tensors='pt')
-    outputs = model.generate(input_ids, max_length=512)
-    sql_query = tokenizer.decode(outputs[0], skip_special_tokens=True)
+    """
+    To be updated in the future
+    Uncomment the code below to deploy the Llm model
+    In this MVP, user sql_query would be equal to user_input
+    """
+    # # Prepare the input for the model
+    # input_ids = tokenizer.encode(user_input, return_tensors='pt')
+    # outputs = model.generate(input_ids, max_length=512)
+    # sql_query = tokenizer.decode(outputs[0], skip_special_tokens=True)
     
+    sql_query = user_input
     print(f"model output is: {sql_query}")
 
     return jsonify({'sql_query': sql_query})
