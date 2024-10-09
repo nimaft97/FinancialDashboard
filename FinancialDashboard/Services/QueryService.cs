@@ -1,4 +1,5 @@
 ﻿using FinancialDashboard.Models;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -93,6 +94,35 @@ namespace FinancialDashboard.Services
             {
                 return $"Error executing query: {ex.Message}";
             }
+        }
+
+        public async Task<List<Transaction>> GetAllTransactions()
+        {
+            var transactions = new List<Transaction>();
+
+            using (var connection = new SqliteConnection(_context._connectionString))
+            {
+                await connection.OpenAsync();
+
+                var command = connection.CreateCommand();
+                command.CommandText = "SELECT * FROM Transactions";
+
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        transactions.Add(new Transaction
+                        {
+                            TransactionID = reader.GetInt32(0),
+                            Value = reader.GetDecimal(1),
+                            Description = reader.GetString(2),
+                            Category = (Category)reader.GetInt32(3), // Assuming Category is stored as an enum
+                            Date = reader.GetDateTime(4)
+                        });
+                    }
+                }
+            }
+            return transactions;
         }
     }
 }
